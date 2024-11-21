@@ -2490,15 +2490,15 @@ void draw(DrawingWindow &window) {
 void cameraAnimation(DrawingWindow &window){
 
 	//orbit(cameraPosition,M_PI);
-	cameraPosition = {1,1,4.0};
+	//cameraPosition = {1,1,4.0};
 	specularPower = 0.5; //specular intensity
 	specularShininess = 1; //specular shininess
 	sourceIntensity = 10;
 	ambient = 0.2;
 	lightSource = {0,0.75,0.5};
 	lightRadius = 0.1; //how many
-
-	for (int i = 0; i < 101; i++)
+	cameraPosition= {1.41142, -0.088799, 3.01}	;
+	for (int i = 0; i < 260; i++)
 	{	
 		//std::cout << "i:  " << i << std::endl;
 		//save all frames of the loop
@@ -2507,16 +2507,10 @@ void cameraAnimation(DrawingWindow &window){
 
 		window.savePPM(ss.str());
 
-		cameraPosition= {1.41142, -0.088799, 3.01}	;
-
 		if (i>99){
 			draw(window);
 			window.renderFrame();
-
-
 		}
-		
-
 		// if (i<45){
 		// 	mode = wireframe;
 		// }
@@ -2569,14 +2563,15 @@ void cameraAnimation(DrawingWindow &window){
 		// }
 
 		//turn on orbit 
-		if (i>99 && i<115){
+		if (i>99 && i<115){		
+
 			//print camera position
-			std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
-			//print camera orientation
-			for (int i = 0; i < 3; i++)
-			{
-				std::cout << "camera orientation:  " << cameraOrientation[i].x << " " << cameraOrientation[i].y << " " << cameraOrientation[i].z << std::endl;
-			}
+			// std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
+			// //print camera orientation
+			// for (int i = 0; i < 3; i++)
+			// {
+			// 	std::cout << "camera orientation:  " << cameraOrientation[i].x << " " << cameraOrientation[i].y << " " << cameraOrientation[i].z << std::endl;
+			// }
 
 			if (cameraPosition.x>0.05){
 
@@ -2594,6 +2589,12 @@ void cameraAnimation(DrawingWindow &window){
 			cameraPosition.z -=0.02;
 		}
 		if (i>114 && i<150){
+			// std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
+			// //print camera orientation
+			// for (int i = 0; i < 3; i++)
+			// {
+			// 	std::cout << "camera orientation:  " << cameraOrientation[i].x << " " << cameraOrientation[i].y << " " << cameraOrientation[i].z << std::endl;
+			// }
 			orbitToggleRight = true;
 			orbitOther(cameraPosition,M_PI/2);
 			cameraPosition.z -=0.01;
@@ -2651,6 +2652,7 @@ void cameraAnimation(DrawingWindow &window){
 
 	
 }
+
 
 
 // Handle user input  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3003,8 +3005,6 @@ int main(int argc, char *argv[]) {
 		mode = wireframe;
 		renderModeInt = 0;
 		cameraAnimation(window);
-
-
 
 		std::string ffmpeg_command = "ffmpeg -framerate 15 -i 0frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputwire.mp4";
 		int ret_code = system(ffmpeg_command.c_str());
