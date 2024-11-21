@@ -1,1 +1,3 @@
 # RedNoise
+
+just run $make
