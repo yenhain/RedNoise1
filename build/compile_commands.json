@@ -1,0 +1,80 @@
+[
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/libs/sdw/CanvasPoint.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/CanvasPoint.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/CanvasPoint.cpp",
+  "output": "CMakeFiles/RedNoise.dir/libs/sdw/CanvasPoint.cpp.o"
+},
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/libs/sdw/CanvasTriangle.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/CanvasTriangle.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/CanvasTriangle.cpp",
+  "output": "CMakeFiles/RedNoise.dir/libs/sdw/CanvasTriangle.cpp.o"
+},
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/libs/sdw/Colour.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/Colour.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/Colour.cpp",
+  "output": "CMakeFiles/RedNoise.dir/libs/sdw/Colour.cpp.o"
+},
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/libs/sdw/DrawingWindow.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/DrawingWindow.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/DrawingWindow.cpp",
+  "output": "CMakeFiles/RedNoise.dir/libs/sdw/DrawingWindow.cpp.o"
+},
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/libs/sdw/LoadObject.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/LoadObject.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/LoadObject.cpp",
+  "output": "CMakeFiles/RedNoise.dir/libs/sdw/LoadObject.cpp.o"
+},
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/libs/sdw/LoadMaterial.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/LoadMaterial.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/LoadMaterial.cpp",
+  "output": "CMakeFiles/RedNoise.dir/libs/sdw/LoadMaterial.cpp.o"
+},
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/libs/sdw/Materials.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/Materials.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/Materials.cpp",
+  "output": "CMakeFiles/RedNoise.dir/libs/sdw/Materials.cpp.o"
+},
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/libs/sdw/ModelTriangle.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/ModelTriangle.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/ModelTriangle.cpp",
+  "output": "CMakeFiles/RedNoise.dir/libs/sdw/ModelTriangle.cpp.o"
+},
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/libs/sdw/RayTriangleIntersection.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/RayTriangleIntersection.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/RayTriangleIntersection.cpp",
+  "output": "CMakeFiles/RedNoise.dir/libs/sdw/RayTriangleIntersection.cpp.o"
+},
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/libs/sdw/TextureMap.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/TextureMap.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/TextureMap.cpp",
+  "output": "CMakeFiles/RedNoise.dir/libs/sdw/TextureMap.cpp.o"
+},
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/libs/sdw/TexturePoint.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/TexturePoint.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/TexturePoint.cpp",
+  "output": "CMakeFiles/RedNoise.dir/libs/sdw/TexturePoint.cpp.o"
+},
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/libs/sdw/Utils.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/Utils.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw/Utils.cpp",
+  "output": "CMakeFiles/RedNoise.dir/libs/sdw/Utils.cpp.o"
+},
+{
+  "directory": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/build",
+  "command": "/usr/bin/c++  -I/usr/include/SDL2 -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/glm-0.9.7.2\" -I\"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/libs/sdw\" -g -std=gnu++14 -Wall -Wextra -Wcast-align -Wfatal-errors -Werror=return-type -Wno-unused-parameter -Wno-unused-variable -Wno-ignored-attributes -O2 -fno-omit-frame-pointer -g -o CMakeFiles/RedNoise.dir/src/RedNoise.cpp.o -c \"/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/src/RedNoise.cpp\"",
+  "file": "/home/yenhain27/Desktop/CG/CG2024/Weekly Workbooks/01 Introduction and Orientation/extras/RedNoise/src/RedNoise.cpp",
+  "output": "CMakeFiles/RedNoise.dir/src/RedNoise.cpp.o"
+}
+]
