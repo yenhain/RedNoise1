@@ -2498,7 +2498,7 @@ void cameraAnimation(DrawingWindow &window){
 	lightSource = {0,0.75,0.5};
 	lightRadius = 0.1; //how many
 
-	for (int i = 0; i < 260; i++)
+	for (int i = 0; i < 101; i++)
 	{	
 		//std::cout << "i:  " << i << std::endl;
 		//save all frames of the loop
@@ -2507,10 +2507,13 @@ void cameraAnimation(DrawingWindow &window){
 
 		window.savePPM(ss.str());
 
-		if (i>99){
+		cameraPosition= {1.41142, -0.088799, 3.01}	;
 
+		if (i>99){
 			draw(window);
 			window.renderFrame();
+
+
 		}
 		
 
@@ -2544,10 +2547,10 @@ void cameraAnimation(DrawingWindow &window){
 		// else{
 		// 	mode = wireframe;
 		// }
-		//print 
-		//std::cout << "i:  " << i << std::endl;
+		// print 
+		// std::cout << "i:  " << i << std::endl;
 
-		//start loop around the circle
+		// // start loop around the circle
 		// int circleSteps = 25;
 		// float circleRadius = std::sqrt(2.0);
 		// float angleStep = M_PI / 2.0 /circleSteps;
@@ -2562,11 +2565,18 @@ void cameraAnimation(DrawingWindow &window){
 		// 	cameraPosition = {x, y, z};
 
 		// 	//print camera position
-		// 	//std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
+		// 	std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
 		// }
 
 		//turn on orbit 
 		if (i>99 && i<115){
+			//print camera position
+			std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
+			//print camera orientation
+			for (int i = 0; i < 3; i++)
+			{
+				std::cout << "camera orientation:  " << cameraOrientation[i].x << " " << cameraOrientation[i].y << " " << cameraOrientation[i].z << std::endl;
+			}
 
 			if (cameraPosition.x>0.05){
 
