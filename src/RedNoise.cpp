@@ -2472,6 +2472,8 @@ void draw(DrawingWindow &window) {
 		
 	case rayTraced:
 
+		std::cout << "ray traced" << std::endl;
+
 		drawRayTraceWithShadow(window,cameraPosition,objectModelTriangles,lightSource,ambient,sourceIntensity,specularPower,shading);
 		break;
 	
@@ -2498,13 +2500,19 @@ void cameraAnimation(DrawingWindow &window){
 
 	for (int i = 0; i < 260; i++)
 	{	
+		//std::cout << "i:  " << i << std::endl;
 		//save all frames of the loop
 		std::stringstream ss;
 		ss << renderModeInt <<"frame" << std::setw(5) << std::setfill('0') << i << ".ppm";
 
 		window.savePPM(ss.str());
-		draw(window);
-		window.renderFrame();
+
+		if (i>99){
+
+			draw(window);
+			window.renderFrame();
+		}
+		
 
 		// if (i<45){
 		// 	mode = wireframe;
@@ -2540,22 +2548,22 @@ void cameraAnimation(DrawingWindow &window){
 		//std::cout << "i:  " << i << std::endl;
 
 		//start loop around the circle
-		int circleSteps = 25;
-		float circleRadius = std::sqrt(2.0);
-		float angleStep = M_PI / 2.0 /circleSteps;
-		float z = 4.0;
-		// Loop to calculate positions
-		if (i<100){
-			//angle for the current step
-			float angle = i * angleStep;
-			float x = circleRadius * cos(angle);
-			float y = circleRadius* sin(angle);
-			z = z-0.01*i;
-			cameraPosition = {x, y, z};
+		// int circleSteps = 25;
+		// float circleRadius = std::sqrt(2.0);
+		// float angleStep = M_PI / 2.0 /circleSteps;
+		// float z = 4.0;
+		// // Loop to calculate positions
+		// if (i<100){
+		// 	//angle for the current step
+		// 	float angle = i * angleStep;
+		// 	float x = circleRadius * cos(angle);
+		// 	float y = circleRadius* sin(angle);
+		// 	z = z-0.01*i;
+		// 	cameraPosition = {x, y, z};
 
-			//print camera position
-			//std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
-		}
+		// 	//print camera position
+		// 	//std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
+		// }
 
 		//turn on orbit 
 		if (i>99 && i<115){
@@ -2867,7 +2875,7 @@ int main(int argc, char *argv[]) {
 
 
 	DrawingWindow window = DrawingWindow(WIDTH,HEIGHT,false);
-	SDL_Event event;
+	//SDL_Event event;
 	/*
 
 	// //test task2.2
@@ -2979,7 +2987,7 @@ int main(int argc, char *argv[]) {
 	bool isTexture=false; //false for no texture true for texture
 	*/
 
-	int remderrrrrr = 0;
+	int remderrrrrr = 5;
 
 	if (remderrrrrr==0){
 		mode = wireframe;
