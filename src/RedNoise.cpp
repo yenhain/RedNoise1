@@ -18,17 +18,13 @@
 #include <sstream>
 #include <string>
 #include <iomanip>
-#include <filesystem>	
-#include <bits/fs_ops.h>
 
-
-
-// #define WIDTH 640
-// #define HEIGHT 480
+#define WIDTH 640
+#define HEIGHT 480
 // #define WIDTH 600
 // #define HEIGHT 600
-#define WIDTH 1000
-#define HEIGHT 1000
+// #define WIDTH 1000
+// #define HEIGHT 1000
 
 std::vector<ModelTriangle> objectModelTriangles;
 TextureMap texture;	
@@ -79,84 +75,60 @@ CanvasTriangle randomStrokedTriangle(){
 //task 5.2 camera translation matrix
 //up down left right translation
 void leftTranslation(glm::vec3 &cameraPosition){
-	//translate camera
 	glm::vec3 translation(0.1,0.0,0.0);
 	cameraPosition += translation;
 }
 void rightTranslation(glm::vec3 &cameraPosition){
-	//translate camera
 	glm::vec3 translation(-0.1,0.0,0.0);
 	cameraPosition += translation;
 }
 void upTranslation(glm::vec3 &cameraPosition){
-	//translate camera
 	glm::vec3 translation(0.0,-0.1,0.0);
 	cameraPosition += translation;
 }
 void downTranslation(glm::vec3 &cameraPosition){
-	//translate camera
 	glm::vec3 translation(0.0,0.1,0.0);
 	cameraPosition += translation;
 }
 //rotate camera on axis
 void xRotateUp(glm::vec3 &cameraPosition,float theta){
-	//rotate camera
-	//vec is column
 	glm::mat3 rotationMatrix (glm::vec3(1.0,0.0,0.0),glm::vec3(0.0,cos(theta/180),sin(theta/180)),glm::vec3(0.0,-sin(theta/180),cos(theta/180)));
 	cameraPosition = rotationMatrix*cameraPosition;	
 }
 void xRotateDown(glm::vec3 &cameraPosition,float theta){
-	//rotate camera
-	//vec is column
 	glm::mat3 rotationMatrix (glm::vec3(1.0,0.0,0.0),glm::vec3(0.0,cos(-theta/180),sin(-theta/180)),glm::vec3(0.0,-sin(-theta/180),cos(-theta/180)));
 	cameraPosition = rotationMatrix*cameraPosition;
 }
 void yRotateLeft(glm::vec3 &cameraPosition,float theta){
-	//rotate camera
-	//vec is column
 	glm::mat3 rotationMatrix (glm::vec3(cos(theta/180),0.0,-sin(theta/180)),glm::vec3(0.0,1.0,0.0),glm::vec3(sin(theta/180),0.0,cos(theta/180)));
 	cameraPosition = rotationMatrix*cameraPosition;
 }
 void yRotateRight(glm::vec3 &cameraPosition,float theta){
-	//rotate camera
-	//vec is column
 	glm::mat3 rotationMatrix (glm::vec3(cos(-theta/180),0.0,-sin(-theta/180)),glm::vec3(0.0,1.0,0.0),glm::vec3(sin(-theta/180),0.0,cos(-theta/180)));
 	cameraPosition = rotationMatrix*cameraPosition;
 }
 void zRotateLeft(glm::vec3 &cameraPosition,float theta){
-	//rotate camera
-	//vec is column
 	glm::mat3 rotationMatrix (glm::vec3(cos(theta/180),sin(theta/180),0.0),glm::vec3(-sin(theta/180),cos(theta/180),0.0),glm::vec3(0.0,0.0,1.0));
 	cameraPosition = rotationMatrix*cameraPosition;
 }
 void zRotateRight(glm::vec3 &cameraPosition,float theta){
-	//rotate camera
-	//vec is column
 	glm::mat3 rotationMatrix (glm::vec3(cos(-theta/180),sin(-theta/180),0.0),glm::vec3(-sin(-theta/180),cos(-theta/180),0.0),glm::vec3(0.0,0.0,1.0));
 	cameraPosition = rotationMatrix*cameraPosition;
 }
 //task 5.3 camera orientation
 void tiltup(glm::mat3 &cameraOrientation,float theta){
-	//rotate camera
-	//vec is column
 	glm::mat3 rotationMatrix (glm::vec3(1.0,0.0,0.0),glm::vec3(0.0,cos(theta/180),sin(theta/180)),glm::vec3(0.0,-sin(theta/180),cos(theta/180)));
 	cameraOrientation = rotationMatrix*cameraOrientation;
 }
 void tiltdown(glm::mat3 &cameraOrientation,float theta){
-	//rotate camera
-	//vec is column
 	glm::mat3 rotationMatrix (glm::vec3(1.0,0.0,0.0),glm::vec3(0.0,cos(-theta/180),sin(-theta/180)),glm::vec3(0.0,-sin(-theta/180),cos(-theta/180)));
 	cameraOrientation = rotationMatrix*cameraOrientation;
 }
 void panleft(glm::mat3 &cameraOrientation,float theta){
-	//rotate camera
-	//vec is column
 	glm::mat3 rotationMatrix (glm::vec3(cos(theta/180),0.0,-sin(theta/180)),glm::vec3(0.0,1.0,0.0),glm::vec3(sin(theta/180),0.0,cos(theta/180)));
 	cameraOrientation =rotationMatrix*cameraOrientation;
 }
 void panright(glm::mat3 &cameraOrientation,float theta){
-	//rotate camera
-	//vec is column
 	glm::mat3 rotationMatrix (glm::vec3(cos(-theta/180),0.0,-sin(-theta/180)),glm::vec3(0.0,1.0,0.0),glm::vec3(sin(-theta/180),0.0,cos(-theta/180)));
 	cameraOrientation = rotationMatrix*cameraOrientation;
 }
@@ -185,8 +157,6 @@ void orbit(glm::vec3 &cameraPosition,float theta){
 
 	//add toggle
 	if (orbitToggleLeft==true){
-		//rotate camera
-		//vec is column
 		glm::mat3 rotationMatrix (glm::vec3(cos(theta/180),0.0,-sin(theta/180)),glm::vec3(0.0,1.0,0.0),glm::vec3(sin(theta/180),0.0,cos(theta/180)));
 		//rotate from left to right
 		cameraPosition = rotationMatrix*cameraPosition;
@@ -203,8 +173,7 @@ void orbitOther(glm::vec3 &cameraPosition,float theta){
 
 	//add toggle
 	if (orbitToggleRight==true){
-		//rotate camera
-		//vec is column
+
 		glm::mat3 rotationMatrix (glm::vec3(cos(theta/180),0.0,-sin(theta/180)),glm::vec3(0.0,1.0,0.0),glm::vec3(sin(theta/180),0.0,cos(theta/180)));
 		//rotate from left to right
 		//cameraPosition = rotationMatrix*cameraPosition;
@@ -235,6 +204,7 @@ std::vector <glm::vec3> lightSourceSphere(glm::vec3 lightPosition,float radius){
 		float theta = i*2*M_PI/section;
 		for (float j = 0; j < section; j++)
 		{
+			// code for float phi x y z were guided by https://www.geeksforgeeks.org/equation-of-a-sphere/
 			float phi = j*M_PI/section;
 			float x = lightPosition.x + radius*sin(phi)*cos(theta);
 			float y = lightPosition.y + radius*sin(phi)*sin(theta);
@@ -261,8 +231,6 @@ std::vector <glm::vec3> lightSourceSphere(glm::vec3 lightPosition,float radius){
 
 	//print size of vecotr
 	//std::cout << "Size of light source sphere: " << lightSourceSphere.size() << std::endl;
-
-	//covert to glm
 	std::vector<glm::vec3> lightSourceSphereGlm;
 	for (std::vector<float> point : lightSourceSphere)
 	{
@@ -290,7 +258,6 @@ glm::vec3 getNormal(const glm::vec3 &v0,const  glm::vec3 &v1,const  glm::vec3 &v
 //consider making this more versitile
 //paramater intersection point
 //return barycentric coordinates vector
-//make general bary function
 glm::vec3 barycentricCoordinates(const glm::vec3 &v0,const  glm::vec3 &v1,const  glm::vec3 &v2,const  glm::vec3 &p){
 	//find the direction from light to surface
 	glm::vec3 e0 = v1 - v0;
@@ -315,7 +282,7 @@ glm::vec3 barycentricCoordinates(const glm::vec3 &v0,const  glm::vec3 &v1,const 
 	return glm::vec3(u,v,w);
 }
 
-//bary cords afor canvaspoint
+//bary cords for canvaspoint
 glm::vec3 barycentricCoordinatesCanvasPoint(const CanvasPoint &v0, const CanvasPoint &v1, const CanvasPoint &v2 ,const  CanvasPoint &p){
 
 	//find the direction from light to surface
@@ -413,8 +380,6 @@ float angleOfIncidenceLighting (const glm::vec3 &lightPosition, const glm::vec3 
 	
 	//find the direction from canvas to light
 	glm::vec3 surfaceToLightVector = lightPosition - canvasPosition;
-	//filightToSurfaceVectornd distance from light to surface vec
-	//float lightToSurface = glm::length(lightPosition-canvasPosition);
 
 	//normalise since normal is a unit vector
 	surfaceToLightVector = glm::normalize(surfaceToLightVector);
@@ -425,9 +390,6 @@ float angleOfIncidenceLighting (const glm::vec3 &lightPosition, const glm::vec3 
 
 	//make sure the angle not greater than 90 degrees
 	angleOfIncidence = std::max(0.0f,angleOfIncidence);
-
-	//angleOfIncidence = angleOfIncidence*sourceIntensity;
-	//angleOfIncidence = std::max(0.0f,std::min(angleOfIncidence,1.0f));
 
 	return angleOfIncidence;
 
@@ -447,20 +409,11 @@ float specularLighting (const glm::vec3 &lightPosition, const glm::vec3 &canvasP
 	//normalise
 	surfaceToCamera = glm::normalize(surfaceToCamera);
 
-	// //need to shift to light in space, account for the camera orientation
-	// surfaceToCamera = cameraOrientation*surfaceToCamera;
-
- 
 	//rI vector of angle of incidence
 	//vector of light to surface
 	glm::vec3 rayIncidence = canvasPosition - lightPosition;
 	//normalise
 	rayIncidence = glm::normalize(rayIncidence);
-
-	//normalise normal
-	//normal = glm::normalize(normal);
-
-
 	//find reflection vector
 	//r reflection vector = r incident - 2(n dot r incident)
 	glm::vec3 rayReflection = rayIncidence - 2.0f * normal * glm::dot(normal,rayIncidence);
@@ -488,10 +441,6 @@ float specularLighting (const glm::vec3 &lightPosition, const glm::vec3 &canvasP
 //paramater proximity, angle of incidence, specular, source intensity, ambient factor
 //return light multiplier as a float
 float calculateLighting(float proximity, float angleOfIncidence, float specular, float sourceIntensity, float ambientfacotr){
-
-	//float light = proximity*(angleOfIncidence+specular) + ambientfacotr*sourceIntensity;
-	//float light = sourceIntensity*((proximity*angleOfIncidence)+specular )+ ambientfacotr; */
-
 
 	float light = sourceIntensity*(proximity*(angleOfIncidence+specular))+ambientfacotr;
 	light = std::max(0.0f,std::min(light,1.0f));
@@ -531,40 +480,6 @@ float gouraudShading(const glm::vec3 &lightPosition, const RayTriangleIntersecti
 
 	//find the lighting for the intersection point
 	float calculateLighting = barycentric.x*light0 + barycentric.y*light1 + barycentric.z*light2;
-	/*
-	// //print vector
-	// //print triangle vertices
-	// std::cout << "Triangle vertices0: " << intersection.intersectedTriangle.vertices[0].x << " " << intersection.intersectedTriangle.vertices[0].y << " " << intersection.intersectedTriangle.vertices[0].z << std::endl;
-	// std::cout << "Triangle vertices1: " << intersection.intersectedTriangle.vertices[1].x << " " << intersection.intersectedTriangle.vertices[1].y << " " << intersection.intersectedTriangle.vertices[1].z << std::endl;
-	// std::cout << "Triangle vertices2: " << intersection.intersectedTriangle.vertices[2].x << " " << intersection.intersectedTriangle.vertices[2].y << " " << intersection.intersectedTriangle.vertices[2].z << std::endl;
-	// std::cout << "Intersection point: " << intersection.intersectionPoint.x << " " << intersection.intersectionPoint.y << " " << intersection.intersectionPoint.z << std::endl;
-	// std::cout << "Barycentric coordinates: u=" << barycentricCoordinates.x << ", v=" << barycentricCoordinates.y << ", w=" << barycentricCoordinates.z << std::endl;
-	// std::cout << "Vertex normals 0 : " << vertexNormal0.x << " " << vertexNormal0.y << " " << vertexNormal0.z << std::endl;
-	// std::cout << "Vertex normals 1 : " << vertexNormal1.x << " " << vertexNormal1.y << " " << vertexNormal1.z << std::endl;
-	// std::cout << "Vertex normals 2 : " << vertexNormal2.x << " " << vertexNormal2.y << " " << vertexNormal2.z << std::endl;
-
-	// //print proximity and vertex 
-	// std::cout << "Proximity: p0=" << proximity0 << "vertex 0: " << intersection.intersectedTriangle.vertices[0].x << " " << intersection.intersectedTriangle.vertices[0].y << " " << intersection.intersectedTriangle.vertices[0].z << std::endl;
-	// std::cout << "Proximity: p1=" << proximity1 << "vertex 1: " << intersection.intersectedTriangle.vertices[1].x << " " << intersection.intersectedTriangle.vertices[1].y << " " << intersection.intersectedTriangle.vertices[1].z << std::endl;
-	// std::cout << "Proximity: p2=" << proximity2 << "vertex 2: " << intersection.intersectedTriangle.vertices[2].x << " " << intersection.intersectedTriangle.vertices[2].y << " " << intersection.intersectedTriangle.vertices[2].z << std::endl;
-	// std::cout << "Angle of Incidence: a0=" << angleOfIncidence0 << "vertex 0: " << intersection.intersectedTriangle.vertices[0].x << " " << intersection.intersectedTriangle.vertices[0].y << " " << intersection.intersectedTriangle.vertices[0].z << std::endl;
-	// std::cout << "Angle of Incidence: a1=" << angleOfIncidence1 << "vertex 1: " << intersection.intersectedTriangle.vertices[1].x << " " << intersection.intersectedTriangle.vertices[1].y << " " << intersection.intersectedTriangle.vertices[1].z << std::endl;
-	// std::cout << "Angle of Incidence: a2=" << angleOfIncidence2 << "vertex 2: " << intersection.intersectedTriangle.vertices[2].x << " " << intersection.intersectedTriangle.vertices[2].y << " " << intersection.intersectedTriangle.vertices[2].z << std::endl;
-	// std::cout << "Specular: s0=" << specular0 << "vertex 0: " << intersection.intersectedTriangle.vertices[0].x << " " << intersection.intersectedTriangle.vertices[0].y << " " << intersection.intersectedTriangle.vertices[0].z << std::endl;
-	// std::cout << "Specular: s1=" << specular1 << "vertex 1: " << intersection.intersectedTriangle.vertices[1].x << " " << intersection.intersectedTriangle.vertices[1].y << " " << intersection.intersectedTriangle.vertices[1].z << std::endl;
-	// std::cout << "Specular: s2=" << specular2 << "vertex 2: " << intersection.intersectedTriangle.vertices[2].x << " " << intersection.intersectedTriangle.vertices[2].y << " " << intersection.intersectedTriangle.vertices[2].z << std::endl;
-
-	// std::cout << "Lighting: l0=" << light0 <<std::endl;
-	// std::cout << "Lighting: l1=" << light1 <<std::endl;
-	// std::cout << "Lighting: l2=" << light2 <<std::endl;
-
-	// //print the vlaues used for the calculation
-	// std::cout << "iint 1: " << barycentricCoordinates.x << " *"<< light0  << " + " << barycentricCoordinates.y << " * " << light1 << " + " << barycentricCoordinates.z << " * " << light2 << std::endl;
-	// std::cout << "iint 2: " << barycentricCoordinates.z << " *"<< light0  << " + " << barycentricCoordinates.x << " * " << light1 << " + " << barycentricCoordinates.y << " * " << light2 << std::endl;
-
-	// std::cout << "Interpolated lighting barycentricCoordinates.x*light0 + barycentricCoordinates.y*light1 + barycentricCoordinates.z*light2;: " << calculateLighting1 << std::endl;
-	// std::cout << "Interpolated lighting barycentricCoordinates.z*light0 + barycentricCoordinates.x*light1 + barycentricCoordinates.y*light2;: " << calculateLighting2 << std::endl;
-	*/
 
 	return calculateLighting;
 }
@@ -636,6 +551,7 @@ std::vector <float> overallLighting(const glm::vec3 &lightPosition, const glm::v
 
 
 	}
+	//gourand shading
 	else if (shading == 1){
 		calculatedLight = gouraudShading(lightPosition, closestValidIntersection, objectModelTriangles,ambient);
 		brightness = calculatedLight;
@@ -648,6 +564,7 @@ std::vector <float> overallLighting(const glm::vec3 &lightPosition, const glm::v
 
 
 	}
+	//phong shading
 	else if (shading == 2){
 		calculatedLight = phongShading(lightPosition, closestValidIntersection, objectModelTriangles,ambient);
 		brightness = calculatedLight;
@@ -929,22 +846,10 @@ CanvasPoint projectVertexOnToCanvasPoint(const glm::vec3 &cameraPosition, float 
 	//std::cout << "vertex position:  " << vertexPosition.x << " " << vertexPosition.y << " " << vertexPosition.z << std::endl;
 	
 	glm::vec3 vertexPosition1;
-	// vertexPosition1.x = vertexPosition.x - cameraPosition.x;
-	// vertexPosition1.y = vertexPosition.y - cameraPosition.y;
-	// vertexPosition1.z = vertexPosition.z- cameraPosition.z;
-
 	vertexPosition1 = vertexPosition - cameraPosition;
 
 	glm::vec3 vert = vertexPosition1*cameraOrientation;
 
-	// //task 5.3 adjust vector wrt camera orientation
-	// vertexPosition1 = vertexPosition1*cameraOrientation;
-	//std::cout << "vertex position1:  " << vertexPosition.x << " " << vertexPosition.y << " " << vertexPosition.z << std::endl;
-	//image scaling plan
-	//float imageScalingPlane = 5;
-	//find u v
-	//print vertex position
-	//std::cout << "x: " << vertexPosition.x << " y: " << vertexPosition.y << " z: " << vertexPosition.z << std::endl;
 	float u = (-((focalLength*vert.x/vert.z)*imageScalingPlane)+WIDTH/2);
 	float v = ((focalLength*vert.y/vert.z)*imageScalingPlane)+HEIGHT/2;
 
@@ -958,7 +863,6 @@ CanvasPoint projectVertexOnToCanvasPoint(const glm::vec3 &cameraPosition, float 
 	u = round(u);
 	v = round(v);
 
-	//project to canvas point
 	//std::cout << "u: " << u << " v: " << v << std::endl;
 	//print x y z
 	// std::cout << "x: " << vertexPosition.x << " y: " << vertexPosition.y << " z: " << vertexPosition.z << std::endl;
@@ -968,7 +872,7 @@ CanvasPoint projectVertexOnToCanvasPoint(const glm::vec3 &cameraPosition, float 
 
 //task 4.9 depth buffer 2D array
 std::vector<std::vector<float>> depthBufferArray(DrawingWindow &window){
-	//create 2d depth buffer initialized to 0
+	//create 2d depth buffer
 	std::vector<std::vector<float>> depthBuffer;
 	for (size_t i = 0; i < window.width; i++)
 	{
@@ -979,11 +883,6 @@ std::vector<std::vector<float>> depthBufferArray(DrawingWindow &window){
 		}
 		depthBuffer.push_back(row);
 	}
-
-	//pritn 2d array size
-	//std::cout << "depth buffer size:  " << depthBuffer.size() << " " << depthBuffer[0].size() << std::endl;
-	
-
 	return depthBuffer;
 }
 
@@ -1105,13 +1004,6 @@ glm::vec3 rayDirectionVector(const glm::vec3 &cameraPosition, const glm::vec2 &p
 }
 
 //task 6.5 draw ray tracing in the scene with shadows
-//add to lines 2054
-// //find ray direction from surface to light source
-// glm::vec3 rayDirectionShadows = rayDirectionVectorShadows(closestValidIntersection.intersectionPoint,lightPosition);
-// //find closest intersection
-// RayTriangleIntersection closestValidIntersectionShadows = getClosestValidIntersection(lightPosition,rayDirectionShadows,ModelTriangles,texture);
-//add to line 2071
-//if (closestValidIntersection.intersectedTriangle.vertices==closestValidIntersectionShadows.intersectedTriangle.vertices){
 glm::vec3 rayDirectionVectorShadows(const glm::vec3 &surfacePosition, const glm::vec3 &lightPosition){
 
 	glm::vec3 rayDirection = surfacePosition - lightPosition;
@@ -1199,8 +1091,6 @@ RayTriangleIntersection mirrorRay (RayTriangleIntersection intersection, glm::ve
 	//print distance
 	//std::cout << "distance:  " << distance << std::endl;
 
-	
-	//doe the ray intersect with any other triangles
 	std::vector<RayTriangleIntersection> triangleIntersections;
 	for (ModelTriangle triangle :objectModelTriangles)
 	{
@@ -1265,7 +1155,6 @@ RayTriangleIntersection mirrorRay (RayTriangleIntersection intersection, glm::ve
 
 	}	
 	RayTriangleIntersection closestIntersection;
-	//may change to a large number
 	closestIntersection.distanceFromCamera = max;
 	
 	for (RayTriangleIntersection intersection : triangleIntersections)
@@ -1675,19 +1564,8 @@ void drawFilledTriangleDepthBuffer(DrawingWindow &window, CanvasTriangle triangl
 	bottom = CanvasPoint(round(bottom.x),round(bottom.y),bottom.depth);
 	//rows
 	float topTriangleRows = std::abs(top.y -left.y)+1;
-	//print top rows
 	float bottomTriangleRows = std::abs(left.y - bottom.y)+1;
-	//print bottom rows
-	//std::cout << "bottom rows:  " << bottomTriangleRows << std::endl;
-	//print checker
-	//std::cout << "here" << std::endl;
-	
-	// //print marker
-	// std::cout << "top:  " << top.x << " " << top.y << " " << top.depth << std::endl;
-	// std::cout << "left:  " << left.x << " " << left.y << " " << left.depth << std::endl;
-	// std::cout << "right:  " << right.x << " " << right.y << " " << right.depth << std::endl;
 
-	//NEW
 	//interpolate top
 	std::vector<CanvasPoint> topToLeft=interpolatePointAndDepth(top,left,topTriangleRows);
 	std::vector<CanvasPoint> topToRight=interpolatePointAndDepth(top,right,topTriangleRows);
@@ -1720,58 +1598,7 @@ void drawFilledTriangleDepthBuffer(DrawingWindow &window, CanvasTriangle triangl
 
 	}
 
-	/*
 
-	// 	//OLd
-	// //interpolate top
-	// //glm vector from top to left
-	// glm::vec3 fromTop (top.x,top.y,top.depth);
-	// // //print top
-	// // std::cout << "top:  " << top.x << " " << top.y << " " << top.depth << std::endl;
-	// // //print checker from	
-	// // std::cout << "from:  " << fromTop.x << " " << fromTop.y << " " << fromTop.z << std::endl;
-
-	// glm::vec3 toLeft (left.x,left.y,left.depth);
-	// //std::cout << "to:  " << toLeft.x << " " << toLeft.y << " " << toLeft.z << std::endl;
-
-	// glm::vec3 toRight (right.x,right.y,right.depth);
-	// std::vector<glm::vec3> topToLeftTriangle = interpolateThreeElementValues(fromTop,toLeft,topTriangleRows);
-	// //print top to left
-	// // for (size_t i = 0; i < topToLeftTriangle.size(); i++)
-	// // {
-	// // 	std::cout << "top to left:  " << topToLeftTriangle[i].x << " " << topToLeftTriangle[i].y << " " << topToLeftTriangle[i].z << std::endl;
-	// // }
-	// std::vector<glm::vec3> topToRightTriangle = interpolateThreeElementValues(fromTop,toRight,topTriangleRows);
-	
-	// for(size_t i=0; i<topToLeftTriangle.size(); i++) 
-	// {
-	// 	glm::vec3& vec=topToLeftTriangle[i];
-	// 	glm::vec3& vec2=topToRightTriangle[i];
-	// 	//round to canvas point
-	// 	CanvasPoint from = CanvasPoint(round(vec.x),round(vec.y),vec.z);
-	// 	CanvasPoint to = CanvasPoint(round(vec2.x),round(vec2.y),vec2.z);
-	// 	drawDepthLine(window,from,to,colour,depthBuffer);
-		
-
-	// }
-
-	// //interpolate bottom
-	// //glm vector from
-	// glm::vec3 fromLeft (left.x,left.y,left.depth);
-	// glm::vec3 fromRight (right.x,right.y,right.depth);
-	// glm::vec3 toBottom (bottom.x,bottom.y,bottom.depth);
-	// std::vector<glm::vec3> leftToBottomTriangle = interpolateThreeElementValues(fromLeft,toBottom,bottomTriangleRows);
-	// std::vector<glm::vec3> rightToBottomTriangle = interpolateThreeElementValues(fromRight,toBottom,bottomTriangleRows);
-	// for(size_t i=0; i<leftToBottomTriangle.size(); i++) 
-	// {
-	// 	glm::vec3& vec=leftToBottomTriangle[i];
-	// 	glm::vec3& vec2=rightToBottomTriangle[i];
-	// 	//round to canvas point
-	// 	CanvasPoint from = CanvasPoint(round(vec.x),round(vec.y),vec.z);
-	// 	CanvasPoint to = CanvasPoint(round(vec2.x),round(vec2.y),vec2.z);
-	// 	drawDepthLine(window,from,to,colour,depthBuffer);
-	// }
-	*/
 	//draw edge
 	drawDepthLine(window,top,left,outlineColour,depthBuffer);
 	drawDepthLine(window,top,right,outlineColour,depthBuffer);
@@ -1813,20 +1640,20 @@ void drawWireframe(DrawingWindow &window, const glm::vec3 &cameraPosition, float
 		CanvasPoint v1 = projectVertexOnToCanvasPoint(cameraPosition,focalLength,triangle.vertices[1]);
 		CanvasPoint v2 = projectVertexOnToCanvasPoint(cameraPosition,focalLength,triangle.vertices[2]);
 
-		if (triangle.isTextured){
-			//if there are texture points on the triangle add them
-			v0.texturePoint = triangle.texturePoints[0];
-			v1.texturePoint = triangle.texturePoints[1];
-			v2.texturePoint = triangle.texturePoints[2];
-			CanvasTriangle sortedTriangle = sortVertices(CanvasTriangle(v0,v1,v2));
-			drawTextureLine(window,sortedTriangle.v0(),sortedTriangle.v1(),texture);
-		} else{
-			//draw on canvas
-			drawStrokedTriangle(window, CanvasTriangle(v0,v1,v2),triangle.colour);
-		}
+		// if (triangle.isTextured){
+		// 	//if there are texture points on the triangle add them
+		// 	v0.texturePoint = triangle.texturePoints[0];
+		// 	v1.texturePoint = triangle.texturePoints[1];
+		// 	v2.texturePoint = triangle.texturePoints[2];
+		// 	CanvasTriangle sortedTriangle = sortVertices(CanvasTriangle(v0,v1,v2));
+		// 	drawTextureLine(window,sortedTriangle.v0(),sortedTriangle.v1(),texture);
+		// } else{
+		// 	//draw on canvas
+		// 	drawStrokedTriangle(window, CanvasTriangle(v0,v1,v2),triangle.colour);
+		// }
 		//white outline
-		// Colour white = Colour(255,255,255);
-		// drawStrokedTriangle(window, CanvasTriangle(v0,v1,v2),white);
+		Colour white = Colour(255,255,255);
+		drawStrokedTriangle(window, CanvasTriangle(v0,v1,v2),white);
 	}
 }
 
@@ -1936,76 +1763,6 @@ void drawTextureMapping(DrawingWindow &window, CanvasPoint v0, CanvasPoint v1, C
 		}
 	}
 
-	/*
-	// //find texture point of top triangle
-	// std::vector<CanvasPoint> topToLeftTexture=interpolatePointAndTexture(top,left,topTriangleRows);
-	// std::vector<CanvasPoint> topToRightTexture=interpolatePointAndTexture(top,right,topTriangleRows);
-
-	// for(size_t i=0; i<topToLeft.size(); i++)
-	// {
-	// 	//round x and y for canvas point
-	// 	CanvasPoint from;
-	// 	from.x = round(topToLeft[i].x);
-	// 	from.y = round(topToLeft[i].y);
-	// 	from.depth = topToLeft[i].depth;
-	// 	from.texturePoint.x = (topToLeftTexture[i].texturePoint.x);
-	// 	from.texturePoint.y = (topToLeftTexture[i].texturePoint.y);
-
-	// 	CanvasPoint to;
-	// 	to.x = round(topToRight[i].x);
-	// 	to.y = round(topToRight[i].y);
-	// 	to.depth = topToRight[i].depth;
-	// 	to.texturePoint.x = (topToRightTexture[i].texturePoint.x);
-	// 	to.texturePoint.y = (topToRightTexture[i].texturePoint.y);
-
-
-	// 	//print marker
-	// 	// std::cout << "from:  " << from.x << " " << from.y << " " << from.depth << std::endl;
-	// 	// std::cout << "to:  " << to.x << " " << to.y << " " << to.depth << std::endl;
-	// 	// std::cout << "from texture:  " << from.texturePoint.x << " " << from.texturePoint.y << std::endl;
-	// 	// std::cout << "to texture:  " << to.texturePoint.x << " " << to.texturePoint.y << std::endl;
-
-	// 	drawDepthTextureLine(window,from,to,texture,depthBuffer);
-	
-	// }
-
-	// //interpolate bottom
-	// std::vector<CanvasPoint> leftToBottom=interpolatePointAndDepth(left,bottom,bottomTriangleRows);
-	// std::vector<CanvasPoint> rightToBottom=interpolatePointAndDepth(right,bottom,bottomTriangleRows);
-	
-	// //find texture point of bottom triangle
-	// std::vector<CanvasPoint> leftToBottomTexture=interpolatePointAndTexture(left,bottom,bottomTriangleRows);
-	// std::vector<CanvasPoint> rightToBottomTexture=interpolatePointAndTexture(right,bottom,bottomTriangleRows);
-
-	// for(size_t i=0; i<leftToBottom.size(); i++)
-	// {
-	// 	//round to canvas point
-	// 	CanvasPoint from;
-	// 	from.x = round(leftToBottom[i].x);
-	// 	from.y = round(leftToBottom[i].y);
-	// 	from.depth = leftToBottom[i].depth;
-	// 	from.texturePoint.x = (leftToBottomTexture[i].texturePoint.x);
-	// 	from.texturePoint.y = (leftToBottomTexture[i].texturePoint.y);
-		
-	// 	CanvasPoint to;
-	// 	to.x = round(rightToBottom[i].x);
-	// 	to.y = round(rightToBottom[i].y);
-	// 	to.depth = rightToBottom[i].depth;
-	// 	to.texturePoint.x = (rightToBottomTexture[i].texturePoint.x);
-	// 	to.texturePoint.y = (rightToBottomTexture[i].texturePoint.y);
-
-
-	// 	drawDepthTextureLine(window,from,to,texture,depthBuffer);
-
-	// }
-
-	// // //draw edge
-	// // drawDepthTextureLine(window,top,left,texture,depthBuffer);
-	// // drawDepthTextureLine(window,top,right,texture,depthBuffer);
-	// // drawDepthTextureLine(window,left,bottom,texture,depthBuffer);
-	// // drawDepthTextureLine(window,right,bottom,texture,depthBuffer);
-	*/
-
 
 }
 
@@ -2036,7 +1793,6 @@ void drawRasterisedScene(DrawingWindow &window, const glm::vec3 &cameraPosition,
 //task 4.9 wireframe render with depth buffer
 void drawRasterisedSceneDepth(DrawingWindow &window, const glm::vec3 &cameraPosition, float focalLength, const std::vector<ModelTriangle> &objectModelTriangles){
 
-	//create depth buffer
 	std::vector<std::vector<float>> depthBuffer = depthBufferArray(window);
 
 
@@ -2046,19 +1802,6 @@ void drawRasterisedSceneDepth(DrawingWindow &window, const glm::vec3 &cameraPosi
 		CanvasPoint v0 = projectVertexOnToCanvasPoint(cameraPosition,focalLength,triangle.vertices[0]);
 		CanvasPoint v1 = projectVertexOnToCanvasPoint(cameraPosition,focalLength,triangle.vertices[1]);
 		CanvasPoint v2 = projectVertexOnToCanvasPoint(cameraPosition,focalLength,triangle.vertices[2]);
-
-		// if (triangle.colour.name=="White"){	
-			
-		// 	//printvertices
-		// 	std::cout << "v0:  " << triangle.vertices[0].x << " " << triangle.vertices[0].y << " " << triangle.vertices[0].z << std::endl;
-		// 	//print canvas points
-		// 	std::cout << "pixel:  " << v0.x << " " << v0.y << " " << v0.depth << std::endl;
-		// }
-		// //print texturepoint 
-		// std::cout << "v0:  " << v0.texturePoint.x << " " << v0.texturePoint.y << std::endl;
-		// std::cout << "v1:  " << v1.texturePoint.x << " " << v1.texturePoint.y << std::endl;
-		// std::cout << "v2:  " << v2.texturePoint.x << " " << v2.texturePoint.y << std::endl;
-
 
 		if (triangle.isTextured){
 			
@@ -2074,8 +1817,7 @@ void drawRasterisedSceneDepth(DrawingWindow &window, const glm::vec3 &cameraPosi
 		
 			
 		} else{
-			//draw on canvas
-			//transform to canvas points
+
 			drawFilledTriangleDepthBuffer(window,CanvasTriangle(v0,v1,v2),triangle.colour,depthBuffer,triangle.colour);
 		}
 	}
@@ -2126,8 +1868,7 @@ void drawRayTrace(DrawingWindow &window, const glm::vec3 &cameraPosition, const 
 void drawRayTraceWithShadow(DrawingWindow &window, const glm::vec3 &cameraPosition, const std::vector<ModelTriangle> &ModelTriangles, const glm::vec3 &lightPosition,
 								float ambient, float sourceIntensity, float specularPower, int shading){
 
-	//for each pixel on canvas
-
+	//flat shading
 	if(shadow==1){
 		for (size_t y = 0; y < window.height; y++)
 		{
@@ -2161,7 +1902,7 @@ void drawRayTraceWithShadow(DrawingWindow &window, const glm::vec3 &cameraPositi
 		}
 	}
 
-
+	//for gourand and phong
 	else{
 	std::vector <glm::vec3> lightSphere = lightSourceSphere(lightPosition,lightRadius);
 	float lightSSize = lightSphere.size();
@@ -2181,7 +1922,7 @@ void drawRayTraceWithShadow(DrawingWindow &window, const glm::vec3 &cameraPositi
 				//find closest intersection
 				RayTriangleIntersection closestValidIntersection = getClosestValidIntersection(cameraPosition,rayDirection,ModelTriangles,texture);
 
-				
+		
 				RayTriangleIntersection reflectionIntersection;
 
 				//if itersection is mirror, find reflection
@@ -2398,9 +2139,7 @@ void drawRayTraceWithShadow(DrawingWindow &window, const glm::vec3 &cameraPositi
 	// }
 }
 
-
-
-
+//draw wireframe, rasterised and raytraced scene
 void draw(DrawingWindow &window) {
 	window.clearPixels();
 
@@ -2461,18 +2200,9 @@ void draw(DrawingWindow &window) {
 
 		drawRasterisedSceneDepth(window,cameraPosition,focalLength,objectModelTriangles);
 
-		// //print camera position
-		// std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
-		// //print camera orientation
-		// for (int i = 0; i < 3; i++)
-		// {
-		// 	std::cout << "camera orientation:  " << cameraOrientation[i].x << " " << cameraOrientation[i].y << " " << cameraOrientation[i].z << std::endl;
-		// }
 		break;
 		
 	case rayTraced:
-
-		std::cout << "ray traced" << std::endl;
 
 		drawRayTraceWithShadow(window,cameraPosition,objectModelTriangles,lightSource,ambient,sourceIntensity,specularPower,shading);
 		break;
@@ -2485,7 +2215,6 @@ void draw(DrawingWindow &window) {
 
 }
 
-
 //cameria animation
 void cameraAnimation(DrawingWindow &window){
 
@@ -2497,26 +2226,17 @@ void cameraAnimation(DrawingWindow &window){
 	ambient = 0.2;
 	lightSource = {0,0.75,0.5};
 	lightRadius = 0.1; //how many
-
-	for (int i = 0; i < 101; i++)
+	//cameraPosition= {1.41142, -0.088799, 3.01}	;
+	for (int i = 0; i < 260; i++)
 	{	
 		//std::cout << "i:  " << i << std::endl;
 		//save all frames of the loop
 		std::stringstream ss;
-		ss << renderModeInt <<"frame" << std::setw(5) << std::setfill('0') << i << ".ppm";
-
+		ss  <<"frame" << std::setw(5) << std::setfill('0') << i << ".ppm";
 		window.savePPM(ss.str());
-
-		cameraPosition= {1.41142, -0.088799, 3.01}	;
-
-		if (i>99){
-			draw(window);
-			window.renderFrame();
-
-
-		}
-		
-
+		draw(window);
+		window.renderFrame();
+	
 		// if (i<45){
 		// 	mode = wireframe;
 		// }
@@ -2550,33 +2270,48 @@ void cameraAnimation(DrawingWindow &window){
 		// print 
 		// std::cout << "i:  " << i << std::endl;
 
-		// // start loop around the circle
-		// int circleSteps = 25;
-		// float circleRadius = std::sqrt(2.0);
-		// float angleStep = M_PI / 2.0 /circleSteps;
-		// float z = 4.0;
-		// // Loop to calculate positions
 		// if (i<100){
-		// 	//angle for the current step
-		// 	float angle = i * angleStep;
-		// 	float x = circleRadius * cos(angle);
-		// 	float y = circleRadius* sin(angle);
-		// 	z = z-0.01*i;
-		// 	cameraPosition = {x, y, z};
-
-		// 	//print camera position
-		// 	std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
+		// 	mode = wireframe;
+		// }
+		// else if(i>78 && i<82){
+		// 	mode = rayTraced;
+		// 	shadow = 1;
+		// 	shading = 0;
+		// }
+		// else{
+		// 	mode = rayTraced;
+		// 	shadow = 2;
+		// 	shading = 2;
 		// }
 
-		//turn on orbit 
-		if (i>99 && i<115){
+		// start loop around the circle
+		int circleSteps = 25;
+		float circleRadius = std::sqrt(2.0);
+		float angleStep = M_PI / 2.0 /circleSteps;
+		float z = 4.0;
+		// Loop to calculate positions
+		if (i<100){
+			//angle for the current step
+			float angle = i * angleStep;
+			float x = circleRadius * cos(angle);
+			float y = circleRadius* sin(angle);
+			z = z-0.01*i;
+			cameraPosition = {x, y, z};
+
 			//print camera position
-			std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
-			//print camera orientation
-			for (int i = 0; i < 3; i++)
-			{
-				std::cout << "camera orientation:  " << cameraOrientation[i].x << " " << cameraOrientation[i].y << " " << cameraOrientation[i].z << std::endl;
-			}
+			//std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
+		}
+
+		//turn on orbit 
+		if (i>99 && i<115){		
+
+			//print camera position
+			// std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
+			// //print camera orientation
+			// for (int i = 0; i < 3; i++)
+			// {
+			// 	std::cout << "camera orientation:  " << cameraOrientation[i].x << " " << cameraOrientation[i].y << " " << cameraOrientation[i].z << std::endl;
+			// }
 
 			if (cameraPosition.x>0.05){
 
@@ -2594,6 +2329,12 @@ void cameraAnimation(DrawingWindow &window){
 			cameraPosition.z -=0.02;
 		}
 		if (i>114 && i<150){
+			// std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
+			// //print camera orientation
+			// for (int i = 0; i < 3; i++)
+			// {
+			// 	std::cout << "camera orientation:  " << cameraOrientation[i].x << " " << cameraOrientation[i].y << " " << cameraOrientation[i].z << std::endl;
+			// }
 			orbitToggleRight = true;
 			orbitOther(cameraPosition,M_PI/2);
 			cameraPosition.z -=0.01;
@@ -2651,7 +2392,6 @@ void cameraAnimation(DrawingWindow &window){
 
 	
 }
-
 
 // Handle user input  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -2838,54 +2578,11 @@ void handleEvent(SDL_Event event, DrawingWindow &window) {
 
 }
 
-
-
 int main(int argc, char *argv[]) {
 	
 	
-	// std::string inputFile = "sphere1.obj";   // Input OBJ file
-    // std::string outputFile = "sphere.obj"; // Output OBJ file
-    // float yOffset = 5.1f;                  // Offset to subtract from Y-coordinate
-	// float xOffset = 3.5f;                  // Offset to subtract from Y-coordinate
-	// float zOffset = -1.5f;                  // Offset to subtract from Y-coordinate
-    // std::ifstream inFile(inputFile);
-    // std::ofstream outFile(outputFile);
-    // if (!inFile) {
-    //     std::cerr << "Error: Cannot open input file " << inputFile << std::endl;
-    //     return 1;
-    // }
-    // if (!outFile) {
-    //     std::cerr << "Error: Cannot open output file " << outputFile << std::endl;
-    //     return 1;
-    // }
-    // std::string line;
-    // // Process each line of the OBJ file
-    // while (std::getline(inFile, line)) {
-    //     std::istringstream lineStream(line);
-    //     std::string prefix;
-    //     lineStream >> prefix;
-    //     if (prefix == "v") {
-    //         // Process a vertex line
-    //         float x, y, z;
-    //         lineStream >> x >> y >> z;
-    //         // Subtract the offset from the Y-coordinate
-    //         y -= yOffset;
-	// 		x -= xOffset;
-	// 		z -= zOffset;
-    //         // Write the updated vertex line to the output file
-    //         outFile << "v " << x << " " << y << " " << z << "\n";
-    //     } else {
-    //         // Write other lines (e.g., "f", "vn", etc.) unchanged
-    //         outFile << line << "\n";
-    //     }
-    // }
-    // inFile.close();
-    // outFile.close();
-    // std::cout << "Updated OBJ file written to " << outputFile << std::endl;
-
-
 	DrawingWindow window = DrawingWindow(WIDTH,HEIGHT,false);
-	//SDL_Event event;
+	SDL_Event event;
 	/*
 
 	// //test task2.2
@@ -2968,25 +2665,11 @@ int main(int argc, char *argv[]) {
 
 	std::string filename1 = "sphere.obj";	
 	std::vector<ModelTriangle> sphere= LoadObject::loadObjectFile(filename1,materials,0.3);	
-	std::string filename2 = "sphere1.obj";	
-	std::vector<ModelTriangle> sphere1= LoadObject::loadObjectFile(filename2,materials,0.2);
 
 	//combine two objects
 	objectModelTriangles.insert(objectModelTriangles.end(),box.begin(),box.end());
 	objectModelTriangles.insert(objectModelTriangles.end(),sphere.begin(),sphere.end());
-	//objectModelTriangles.insert(objectModelTriangles.end(),sphere1.begin(),sphere1.end());
 
-
-	
-	//test all draw funnctions
-	//drawPointCloud(window,cameraPosition,focalLength,objectModelTriangles);
-	//drawWireframe(window,cameraPosition,focalLength,objectModelTriangles);
-	//drawRasterisedScene(window,cameraPosition,focalLength,objectModelTriangles);
-	//drawRasterisedSceneDepth(window,cameraPosition,focalLength,objectModelTriangles);
-	//drawRayTrace(window,cameraPosition,objectModelTriangles,lightSource,ambient,sourceIntensity,specularPower,shading,isSphere);
-	//shading = 1;
-	//drawRayTraceWithShadow(window,cameraPosition,objectModelTriangles,lightSource,ambient,sourceIntensity,specularPower,shading,isSphere);
-	//must always set focal and image scaling shadow effct, and is shadow
 	/*int max = 1000000;
 	bool isSphere = false; //false for triangle true for sphere this is for shadows appearing close to the sphere
 	float specularPower = 1; //256 for sphrere
@@ -2996,154 +2679,130 @@ int main(int argc, char *argv[]) {
 	float imageScalingPlane;
 	bool isTexture=false; //false for no texture true for texture
 	*/
-
-	int remderrrrrr = 5;
-
-	if (remderrrrrr==0){
-		mode = wireframe;
-		renderModeInt = 0;
-		cameraAnimation(window);
-
-
-
-		std::string ffmpeg_command = "ffmpeg -framerate 15 -i 0frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputwire.mp4";
-		int ret_code = system(ffmpeg_command.c_str());
-		if (ret_code == 0) {
-			std::cout << "Video created successfully as output.mp4" << std::endl;
-		} else {
-			std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
-		}
-		remderrrrrr++;
-	}
-	if (remderrrrrr==1){
-		mode = rasterised;
-		renderModeInt = 1;
-		cameraAnimation(window);
-		std::string ffmpeg_command = "ffmpeg -framerate 15 -i 1frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputraster.mp4";
-		int ret_code = system(ffmpeg_command.c_str());
-		if (ret_code == 0) {
-			std::cout << "Video created successfully as outputrasterised.mp4" << std::endl;
-		} else {
-			std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
-		}
-		remderrrrrr++;
-	}
-	if (remderrrrrr==2){
-		mode = rayTraced;
-		shadow = 1;
-		shading = 0;
-		renderModeInt = 2;
-		cameraAnimation(window);
-
-
-		std::string ffmpeg_command = "ffmpeg -framerate 15 -i 2frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputraytrace1.mp4";
-		int ret_code = system(ffmpeg_command.c_str());
-		if (ret_code == 0) {
-			std::cout << "Video created successfully as outputrasterised.mp4" << std::endl;
-		} else {
-			std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
-		}
-		remderrrrrr++;
-	}
-	if (remderrrrrr==3){
-		mode = rayTraced;
-		shadow = 2;
-		shading = 0;
-		renderModeInt = 3;
-		cameraAnimation(window);
-		std::string ffmpeg_command = "ffmpeg -framerate 15 -i 3frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputraytrace2.mp4";
-		int ret_code = system(ffmpeg_command.c_str());
-		if (ret_code == 0) {
-			std::cout << "Video created successfully as outputrasterised.mp4" << std::endl;
-		} else {
-			std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
-		}
-		remderrrrrr++;
-	}
-	if (remderrrrrr==4){
-		mode = rayTraced;
-		shadow = 2;
-		shading = 1;
-		renderModeInt = 4;
-		cameraAnimation(window);
-		std::string ffmpeg_command = "ffmpeg -framerate 15 -i 4frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputraytrace3.mp4";
-		int ret_code = system(ffmpeg_command.c_str());
-		if (ret_code == 0) {
-			std::cout << "Video created successfully as outputrasterised.mp4" << std::endl;
-		} else {
-			std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
-		}
-		remderrrrrr++;
-	}
-		if (remderrrrrr==5){
-		mode = rayTraced;
-		shadow = 2;
-		shading = 2;
-		renderModeInt = 5;
-		cameraAnimation(window);
-		std::string ffmpeg_command = "ffmpeg -framerate 15 -i 5frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputraytrace4.mp4";
-		int ret_code = system(ffmpeg_command.c_str());
-		if (ret_code == 0) {
-			std::cout << "Video created successfully as outputrasterised.mp4" << std::endl;
-		} else {
-			std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
-		}
-		remderrrrrr++;
-	}
+	//test all draw funnctions
+	//drawPointCloud(window,cameraPosition,focalLength,objectModelTriangles);
+	//drawWireframe(window,cameraPosition,focalLength,objectModelTriangles);
+	//drawRasterisedScene(window,cameraPosition,focalLength,objectModelTriangles);
+	//drawRasterisedSceneDepth(window,cameraPosition,focalLength,objectModelTriangles);
+	//drawRayTrace(window,cameraPosition,objectModelTriangles,lightSource,ambient,sourceIntensity,specularPower,shading,isSphere);
+	//drawRayTraceWithShadow(window,cameraPosition,objectModelTriangles,lightSource,ambient,sourceIntensity,specularPower,shading,isSphere);
+	// int remderrrrrr = 5;
+	// cameraAnimation(window);
+	// if (remderrrrrr==0){
+	// 	mode = wireframe;
+	// 	renderModeInt = 0;
+	// 	cameraAnimation(window);
+	// 	std::string ffmpeg_command = "ffmpeg -framerate 15 -i 0frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputwire.mp4";
+	// 	int ret_code = system(ffmpeg_command.c_str());
+	// 	if (ret_code == 0) {
+	// 		std::cout << "Video created successfully as output.mp4" << std::endl;
+	// 	} else {
+	// 		std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
+	// 	}
+	// 	remderrrrrr++;
+	// }
+	// if (remderrrrrr==1){
+	// 	mode = rasterised;
+	// 	renderModeInt = 1;
+	// 	cameraAnimation(window);
+	// 	std::string ffmpeg_command = "ffmpeg -framerate 15 -i 1frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputraster.mp4";
+	// 	int ret_code = system(ffmpeg_command.c_str());
+	// 	if (ret_code == 0) {
+	// 		std::cout << "Video created successfully as outputrasterised.mp4" << std::endl;
+	// 	} else {
+	// 		std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
+	// 	}
+	// 	remderrrrrr++;
+	// }
+	// if (remderrrrrr==2){
+	// 	mode = rayTraced;
+	// 	shadow = 1;
+	// 	shading = 0;
+	// 	renderModeInt = 2;
+	// 	cameraAnimation(window);
+	// 	std::string ffmpeg_command = "ffmpeg -framerate 15 -i 2frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputraytrace1.mp4";
+	// 	int ret_code = system(ffmpeg_command.c_str());
+	// 	if (ret_code == 0) {
+	// 		std::cout << "Video created successfully as outputrasterised.mp4" << std::endl;
+	// 	} else {
+	// 		std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
+	// 	}
+	// 	remderrrrrr++;
+	// }
+	// if (remderrrrrr==3){
+	// 	mode = rayTraced;
+	// 	shadow = 2;
+	// 	shading = 0;
+	// 	renderModeInt = 3;
+	// 	cameraAnimation(window);
+	// 	std::string ffmpeg_command = "ffmpeg -framerate 15 -i 3frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputraytrace2.mp4";
+	// 	int ret_code = system(ffmpeg_command.c_str());
+	// 	if (ret_code == 0) {
+	// 		std::cout << "Video created successfully as outputrasterised.mp4" << std::endl;
+	// 	} else {
+	// 		std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
+	// 	}
+	// 	remderrrrrr++;
+	// }
+	// if (remderrrrrr==4){
+	// 	mode = rayTraced;
+	// 	shadow = 2;
+	// 	shading = 1;
+	// 	renderModeInt = 4;
+	// 	cameraAnimation(window);
+	// 	std::string ffmpeg_command = "ffmpeg -framerate 15 -i 4frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputraytrace3.mp4";
+	// 	int ret_code = system(ffmpeg_command.c_str());
+	// 	if (ret_code == 0) {
+	// 		std::cout << "Video created successfully as outputrasterised.mp4" << std::endl;
+	// 	} else {
+	// 		std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
+	// 	}
+	// 	remderrrrrr++;
+	// }
+	// if (remderrrrrr==5){
+	// 	mode = rayTraced;
+	// 	shadow = 2;
+	// 	shading = 2;
+	// 	renderModeInt = 5;
+	// 	remderrrrrr++;
+	// }
 
 
-
-	//cameraAnimation(window);
+	//settings for raytrace
 	// specularPower = 0.5; //specular intensity
 	// specularShininess = 1; //specular shininess
 	// sourceIntensity = 10;
 	// ambient = 0.2;
 	// shading = 2; //0 flat 1 gouraud 2 phong
 	// shadow = 2; //1 hard shadow 2 soft shadow
-	// //mode = wireframe;
 	// lightSource = {0,0.75,0.5};
 	// lightRadius = 0.1; //how many
-	//cameraPosition = {1,1,4.0};
 
 
-	// while (true) {
-	// 	// We MUST poll for events - otherwise the window will freeze	
-	// 	if (window.pollForInputEvents(event)){		
-	// 		handleEvent(event, window);
-	// 		//std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
-	// 	}
-	// 	/* //test week2 
-	// 	// draw(window);
-	// 	// //test week3 
-	// 	// drawLine(window,from,to,colour);
-	// 	// drawLine(window,from1,to1,colour);
-	// 	// drawLine(window,from2,to2,colour);
-	// 	// drawLine(window,from3,to3,colour);		
-	// 	// test week 5
-	// 	//draw(window);		
-	// 	// test week 6
-	// 	//drawRayTrace(window);
-	// 	//drawRayTraceWithShadow(window);*/		
-	// 		draw(window);
-	// 	// Need to render the frame at the end, or nothing actually gets shown on the screen !
-	// 	window.renderFrame();
-	// }
+	while (true) {
+		// We MUST poll for events - otherwise the window will freeze	
+		if (window.pollForInputEvents(event)){		
+			handleEvent(event, window);
+			//std::cout << "camera position:  " << cameraPosition.x << " " << cameraPosition.y << " " << cameraPosition.z << std::endl;
+		}
+		/* //test week2 
+		// draw(window);
+		// //test week3 
+		// drawLine(window,from,to,colour);
+		// drawLine(window,from1,to1,colour);
+		// drawLine(window,from2,to2,colour);
+		// drawLine(window,from3,to3,colour);		
+		// test week 5
+		//draw(window);		
+		// test week 6
+		//drawRayTrace(window);
+		//drawRayTraceWithShadow(window);*/		
+		mode = rasterised;
+		draw(window);
+		// Need to render the frame at the end, or nothing actually gets shown on the screen !
+		window.renderFrame();
+	}
 
 
-	//Run FFmpeg command to create the MP4
-    // std::string ffmpeg_command = "ffmpeg -framerate 15 -i frame%05d.ppm -c:v libx264 -pix_fmt yuv420p output.mp4";
-    // int ret_code = system(ffmpeg_command.c_str());
-    // if (ret_code == 0) {
-    //     std::cout << "Video created successfully as output.mp4" << std::endl;
-    // } else {
-    //     std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
-    // }
-	// //delete all frames
-	// for (int i = 0; i < 350; i++)
-	// {
-	// 	std::stringstream ss;
-	// 	ss << "frame" << std::setw(5) << std::setfill('0') << i << ".ppm";
-	// 	remove(ss.str().c_str());
-	// }
 
 }
