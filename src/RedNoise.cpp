@@ -2687,7 +2687,7 @@ int main(int argc, char *argv[]) {
 	float imageScalingPlane;
 	bool isTexture=false; //false for no texture true for texture
 	*/
-	//test all draw funnctions
+	//test all draw funnctions and camera animation
 	//drawPointCloud(window,cameraPosition,focalLength,objectModelTriangles);
 	//drawWireframe(window,cameraPosition,focalLength,objectModelTriangles);
 	//drawRasterisedScene(window,cameraPosition,focalLength,objectModelTriangles);
@@ -2776,15 +2776,32 @@ int main(int argc, char *argv[]) {
 	// }
 
 
+
+	mode = rasterised;
+
 	//settings for raytrace
-	// specularPower = 0.5; //specular intensity
-	// specularShininess = 1; //specular shininess
-	// sourceIntensity = 10;
-	// ambient = 0.2;
-	// shading = 2; //0 flat 1 gouraud 2 phong
-	// shadow = 2; //1 hard shadow 2 soft shadow
-	// lightSource = {0,0.75,0.5};
-	// lightRadius = 0.1; //how many
+	specularPower = 0.5; //specular intensity
+	specularShininess = 1; //specular shinine
+	sourceIntensity = 10;
+	ambient = 0.2;
+	lightSource = {0,0.75,0.5};
+	lightRadius = 0.1;
+
+	//if raytraced hard shadow
+	shadow = 1;
+	shading = 0;
+
+	// //if raytraced soft shadow flat shading
+	// shadow = 2;
+	// shading = 0;
+
+	// //if raytraced soft shadow gouraud shading
+	// shadow = 2;
+	// shading = 1;
+
+	//if raytraced soft shadow phong shading
+	//shadow = 2;
+	//shading = 2;
 
 
 	while (true) {
@@ -2805,11 +2822,20 @@ int main(int argc, char *argv[]) {
 		// test week 6
 		//drawRayTrace(window);
 		//drawRayTraceWithShadow(window);*/		
-		mode = rasterised;
+		
 		draw(window);
 		// Need to render the frame at the end, or nothing actually gets shown on the screen !
 		window.renderFrame();
 	}
+
+	//video
+	// std::string ffmpeg_command = "ffmpeg -framerate 14 -i 0frame%05d.ppm -c:v libx264 -pix_fmt yuv420p outputFINAL.mp4";
+	// int ret_code = system(ffmpeg_command.c_str());
+	// if (ret_code == 0) {
+	// 	std::cout << "Video created successfully as outputFINAL.mp4" << std::endl;
+	// } else {
+	// 	std::cerr << "FFmpeg command failed with code: " << ret_code << std::endl;
+	// }
 
 
 
